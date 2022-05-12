@@ -1,5 +1,19 @@
 #!/bin/bash
 
+export(){ 
+    echo "Enter the index of key which you want to use :"
+    read m
+    if [[ $m -le $j2 ]]; 
+    then
+        command1="gpg --armor --export "${secret_list[$((m-1))]}
+        $command1
+        changeKey="git config --global user.signingkey "${secret_list[$((m-1))]}
+        $changeKey
+    else
+        echo "No such key exists"   
+    fi 
+}
+
 echo "########################  Welcome to GPG Key Generator / Getter  #########################"
 echo "Enter index for : 
 1) Get existing 
@@ -47,18 +61,20 @@ then
         j=$((i+1))
         echo $j. ${uid_list[$i]}
     done
-    echo "Enter the index of key which you want to use : "
-    read m
-    if [[ $m -le $j2 ]] 
-    then
-        command1="gpg --armor --export "${secret_list[$((m-1))]}
-        $command1
-    else
-        echo "No such key exists"   
-    fi         
+    # echo "Enter the index of key which you want to use : "
+    # read m
+    export $secret_list
+    # if [[ $m -le $j2 ]] 
+    # then
+    #     # command1="gpg --armor --export "${secret_list[$((m-1))]}
+    #     # $command1
+    #     export($m)
+    # else
+    #     echo "No such key exists"   
+    # fi         
 
-    changeKey="git config --global user.signingkey "${secret_list[$((m-1))]}
-    $changeKey
+    # changeKey="git config --global user.signingkey "${secret_list[$((m-1))]}
+    # $changeKey
 
 elif [[ $n -eq 2 ]];
 then
