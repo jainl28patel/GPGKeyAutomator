@@ -61,20 +61,8 @@ then
         j=$((i+1))
         echo $j. ${uid_list[$i]}
     done
-    # echo "Enter the index of key which you want to use : "
-    # read m
+    
     export $secret_list
-    # if [[ $m -le $j2 ]] 
-    # then
-    #     # command1="gpg --armor --export "${secret_list[$((m-1))]}
-    #     # $command1
-    #     export($m)
-    # else
-    #     echo "No such key exists"   
-    # fi         
-
-    # changeKey="git config --global user.signingkey "${secret_list[$((m-1))]}
-    # $changeKey
 
 elif [[ $n -eq 2 ]];
 then
